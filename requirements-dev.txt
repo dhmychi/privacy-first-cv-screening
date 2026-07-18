@@ -3,7 +3,7 @@
 # Local dev / CI:  pip install -r requirements.txt -r requirements-dev.txt
 #            (or:  pip install -e ".[dev]")
 pytest==9.1.1
-coverage[toml]==7.6.10
-ruff==0.9.6
-mypy==1.15.0
-fpdf2==2.8.4
+coverage[toml]==7.15.2
+ruff==0.15.22
+mypy==2.3.0
+fpdf2==2.8.7

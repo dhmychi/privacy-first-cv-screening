@@ -22,29 +22,29 @@ classifiers = [
 # Runtime dependencies (mirrored in requirements.txt for the Docker layer cache).
 dependencies = [
     "fastapi==0.139.2",
-    "uvicorn[standard]==0.34.0",
+    "uvicorn[standard]==0.51.0",
     "python-multipart==0.0.32",
-    "pydantic==2.10.4",
+    "pydantic==2.13.4",
     "starlette==1.3.1",
-    "pdfplumber==0.11.9",
+    "pdfplumber==0.11.10",
     "pypdfium2==5.12.1",
     "pypdf==6.14.2",
     "pytesseract==0.3.13",
     "pillow==12.3.0",
     "httpx==0.28.1",
-    "arabic-reshaper==3.0.0",
-    "python-bidi==0.6.3",
-    "python-docx==1.1.2",
+    "arabic-reshaper==3.0.1",
+    "python-bidi==0.6.11",
+    "python-docx==1.2.0",
 ]
 
 [project.optional-dependencies]
 # Dev/test/quality toolchain (mirrored in requirements-dev.txt).
 dev = [
     "pytest==9.1.1",
-    "coverage[toml]==7.6.10",
-    "ruff==0.9.6",
-    "mypy==1.15.0",
-    "fpdf2==2.8.4",
+    "coverage[toml]==7.15.2",
+    "ruff==0.15.22",
+    "mypy==2.3.0",
+    "fpdf2==2.8.7",
 ]
 
 [tool.setuptools.packages.find]
