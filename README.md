@@ -4,11 +4,10 @@
 
 <br/><br/>
 
+[![CI](https://github.com/dhmychi/privacy-first-cv-screening/actions/workflows/ci.yml/badge.svg)](https://github.com/dhmychi/privacy-first-cv-screening/actions/workflows/ci.yml)
+[![Security](https://github.com/dhmychi/privacy-first-cv-screening/actions/workflows/security.yml/badge.svg)](https://github.com/dhmychi/privacy-first-cv-screening/actions/workflows/security.yml)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue)
-![Tests](https://img.shields.io/badge/tests-130%20passing-brightgreen)
 ![Coverage](https://img.shields.io/badge/coverage-73%25-green)
-![Type checked](https://img.shields.io/badge/mypy-clean-brightgreen)
-![Lint](https://img.shields.io/badge/ruff-clean-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 <p><b>Evidence-grounded, fairness-audited, on-box CV screening that treats the LLM as an untrusted component.</b><br/>
