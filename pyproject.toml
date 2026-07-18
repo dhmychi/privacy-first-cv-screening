@@ -1,0 +1,115 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "privacy-first-cv-screening"
+version = "0.1.0"
+description = "Evidence-grounded, fairness-audited, on-box CV screening service with a zero-dependency mock mode."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Abdulrahman Almehmadi" }]
+keywords = ["cv-screening", "hr-tech", "llm", "fastapi", "fairness", "privacy", "rag"]
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Framework :: FastAPI",
+    "Intended Audience :: Developers",
+]
+
+# Runtime dependencies (mirrored in requirements.txt for the Docker layer cache).
+dependencies = [
+    "fastapi==0.139.2",
+    "uvicorn[standard]==0.34.0",
+    "python-multipart==0.0.32",
+    "pydantic==2.10.4",
+    "starlette==1.3.1",
+    "pdfplumber==0.11.9",
+    "pypdfium2==5.12.1",
+    "pypdf==6.14.2",
+    "pytesseract==0.3.13",
+    "pillow==12.3.0",
+    "httpx==0.28.1",
+    "arabic-reshaper==3.0.0",
+    "python-bidi==0.6.3",
+    "python-docx==1.1.2",
+]
+
+[project.optional-dependencies]
+# Dev/test/quality toolchain (mirrored in requirements-dev.txt).
+dev = [
+    "pytest==9.1.1",
+    "coverage[toml]==7.6.10",
+    "ruff==0.9.6",
+    "mypy==1.15.0",
+    "fpdf2==2.8.4",
+]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+# ---------------------------------------------------------------------------
+# Ruff (lint + format)
+# ---------------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [".venv", "synthetic_data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "C4"]
+ignore = [
+    # FastAPI uses `Depends(...)`/`File(...)`/`Header(...)` in argument defaults
+    # by design; that pattern is idiomatic here.
+    "B008",
+    # The formatter owns code line-width; residual E501 is only unbreakable
+    # string literals / comments, which reflowing would harm (rendered tables,
+    # model prompts). Standard practice when `ruff format` is enabled.
+    "E501",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E501"]        # long, explicit assert lines are fine in tests
+"scripts/*" = ["E501"]      # inline fixture content lines
+
+# ---------------------------------------------------------------------------
+# Pytest
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -p no:cacheprovider"
+filterwarnings = [
+    # Library-only deprecations we do not control (Starlette's TestClient httpx
+    # note). Project code is warning-free.
+    "ignore:Using `httpx`:Warning",
+]
+
+# ---------------------------------------------------------------------------
+# Coverage
+# ---------------------------------------------------------------------------
+[tool.coverage.run]
+source = ["app"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+
+# ---------------------------------------------------------------------------
+# Mypy (pragmatic — the pipeline passes dict-shaped candidate data, so this is
+# type-checked for real bugs, not made fully strict)
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+no_implicit_optional = true
+files = ["app"]

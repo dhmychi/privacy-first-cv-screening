@@ -1,0 +1,9 @@
+# Dev / test / quality toolchain.
+# Mirrors pyproject.toml [project.optional-dependencies].dev.
+# Local dev / CI:  pip install -r requirements.txt -r requirements-dev.txt
+#            (or:  pip install -e ".[dev]")
+pytest==9.1.1
+coverage[toml]==7.6.10
+ruff==0.9.6
+mypy==1.15.0
+fpdf2==2.8.4

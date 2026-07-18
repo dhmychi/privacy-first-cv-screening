@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="Privacy-First CV Screening">
+  <style>
+    .sans { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+  </style>
+
+  <rect x="0.5" y="0.5" width="1199" height="299" rx="16" fill="#0B0B0C" stroke="#212125"/>
+
+  <text class="mono" x="72" y="98" fill="#6A6A72" font-size="13" letter-spacing="3">EVIDENCE-GROUNDED · CV SCREENING</text>
+  <text class="sans" x="70" y="160" fill="#F4F4F5" font-size="46" font-weight="600" letter-spacing="-0.5">Privacy-First CV Screening</text>
+  <text class="sans" x="72" y="200" fill="#8A8A90" font-size="19">Treat the LLM as untrusted — the model points, the code reads.</text>
+  <text class="mono" x="72" y="244" fill="#585860" font-size="13.5" letter-spacing="0.3">on-box  ·  fairness-audited  ·  zero-dependency mock  ·  MIT</text>
+
+  <!-- minimal ranked-fit mark: one accent line (top match) among neutral lines -->
+  <g>
+    <rect x="922" y="120" width="206" height="4" rx="2" fill="#6E6AF6"/>
+    <rect x="922" y="141" width="166" height="4" rx="2" fill="#3A3A40"/>
+    <rect x="922" y="162" width="126" height="4" rx="2" fill="#2E2E33"/>
+    <rect x="922" y="183" width="90"  height="4" rx="2" fill="#282A2E"/>
+  </g>
+</svg>

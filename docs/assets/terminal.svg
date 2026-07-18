@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 566" width="1080" height="566" role="img" aria-label="Terminal session: the API analysing a batch and returning a ranked fit report in mock mode">
+  <style>
+    text { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 14px; }
+    .p  { fill: #6E6AF6; }
+    .c  { fill: #E6E6E9; }
+    .o  { fill: #83838A; }
+    .k  { fill: #A9A9B0; }
+    .hi { fill: #EDEDED; }
+    .mut{ fill: #6A6A72; }
+  </style>
+
+  <rect x="0.5" y="0.5" width="1079" height="565" rx="14" fill="#0B0B0C" stroke="#1F1F23"/>
+  <line x1="0" y1="46" x2="1080" y2="46" stroke="#1A1A1E"/>
+  <circle cx="28" cy="24" r="5" fill="#33333A"/>
+  <circle cx="46" cy="24" r="5" fill="#33333A"/>
+  <circle cx="64" cy="24" r="5" fill="#33333A"/>
+  <text class="mut" x="96" y="29">privacy-first-cv-screening — mock mode · no models · no network</text>
+
+  <text x="28" y="86"><tspan class="p">$ </tspan><tspan class="c">curl -s localhost:8089/health</tspan></text>
+  <text class="o" x="28" y="111">{ "service":"cv-screening", "llm_mode":<tspan class="hi">"mock"</tspan>, "version":"0.1.0", "sessions":{"active":0,"ttl_minutes":120} }</text>
+
+  <text x="28" y="151"><tspan class="p">$ </tspan><tspan class="c">curl -sX POST localhost:8089/sessions/demo/analyze -H "X-API-Key: ***" -F files=@demo.zip</tspan></text>
+  <text class="o" x="28" y="176">{ "status":<tspan class="k">"queued"</tspan>, "job_id":"dc307b7540e9", "status_url":"/sessions/demo/status" }</text>
+
+  <text x="28" y="216"><tspan class="p">$ </tspan><tspan class="c">curl -s localhost:8089/sessions/demo/status -H "X-API-Key: ***"</tspan></text>
+  <text class="o" x="28" y="241">{ "status":<tspan class="hi">"ready"</tspan>, "candidate_count":<tspan class="hi">7</tspan>, "needs_review":<tspan class="hi">2</tspan> }</text>
+
+  <text x="28" y="281"><tspan class="p">$ </tspan><tspan class="c">curl -sX POST localhost:8089/sessions/demo/score -H "X-API-Key: ***" -d @ai-engineer.json</tspan></text>
+
+  <text class="mut" y="311"><tspan x="40">rank</tspan><tspan x="104">cv</tspan><tspan x="150">candidate</tspan><tspan x="440">fit</tspan><tspan x="540">level</tspan></text>
+  <text y="339"><tspan class="o" x="40">1</tspan><tspan class="o" x="104">1</tspan><tspan class="c" x="150">David Kim</tspan><tspan class="hi" x="440">100%</tspan><tspan class="k" x="540">strong</tspan></text>
+  <text y="364"><tspan class="o" x="40">2</tspan><tspan class="o" x="104">2</tspan><tspan class="c" x="150">Jordan Miller</tspan><tspan class="hi" x="440">68%</tspan><tspan class="o" x="540">good</tspan></text>
+  <text y="389"><tspan class="o" x="40">3</tspan><tspan class="o" x="104">3</tspan><tspan class="c" x="150">Taylor Brooks</tspan><tspan class="hi" x="440">51%</tspan><tspan class="o" x="540">partial</tspan></text>
+  <text y="414"><tspan class="o" x="40">4</tspan><tspan class="o" x="104">4</tspan><tspan class="c" x="150">Chris Evans</tspan><tspan class="hi" x="440">45%</tspan><tspan class="o" x="540">partial</tspan></text>
+  <text y="439"><tspan class="o" x="40">5</tspan><tspan class="o" x="104">5</tspan><tspan class="c" x="150">Robin Shaw</tspan><tspan class="hi" x="440">34%</tspan><tspan class="o" x="540">weak</tspan></text>
+  <line x1="28" y1="458" x2="900" y2="458" stroke="#18181C"/>
+  <text y="483"><tspan class="mut" x="40">—</tspan><tspan class="mut" x="104">7</tspan><tspan class="o" x="150">Morgan Lee</tspan><tspan class="mut" x="290">excluded · prompt-injection detected → routed to a human</tspan></text>
+
+  <text class="mut" x="28" y="527">5 scored · 1 needs review · 1 duplicate excluded — deterministic, reproducible, evidence-cited</text>
+</svg>

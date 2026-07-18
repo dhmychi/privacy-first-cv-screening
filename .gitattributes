@@ -1,0 +1,13 @@
+# Normalize line endings: store text as LF in the repo, check out native locally.
+* text=auto
+
+# Treat common binary types as binary (never normalize or diff as text).
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.docx binary
+*.xlsx binary
+*.zip  binary

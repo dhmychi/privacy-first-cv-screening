@@ -1,0 +1,61 @@
+name: cv-screening
+
+services:
+  cv-screening:
+    build:
+      context: .
+    image: cv-screening:0.1.0
+    container_name: cv-screening
+    restart: unless-stopped
+    ports:
+      # localhost only. Any local client reaches it via host.docker.internal:8089.
+      - "127.0.0.1:8089:8089"
+    environment:
+      - CV_API_KEY=${CV_API_KEY:?set CV_API_KEY in .env}
+      # Backend mode: 'mock' (DEFAULT, zero-dependency demo — no model/Ollama/network)
+      # or 'ollama' (use the local models configured below).
+      - CV_LLM_MODE=${CV_LLM_MODE:-mock}
+      # ROLLBACK: uncomment next line to revert to legacy matcher (no rebuild)
+      # - CV_MATCHER=legacy
+      - CV_OCR_MODE=auto
+      - CV_OCR_LANGS=ara+eng
+      - CV_OCR_MIN_CONFIDENCE=60
+      - CV_OCR_DPI=300
+      # Vision OCR stays OFF in MVP. If ever set, it MUST be a local URL.
+      - CV_VISION_OCR_URL=
+      - CV_ALLOW_CLOUD_OCR=false
+      # On-box model backends (reuse the existing Ollama).
+      - CV_OLLAMA_URL=http://host.docker.internal:11434
+      - CV_LLM_MODEL=qwen3.6:35b
+      - CV_EMBED_MODEL=bge-m3:latest
+      # LOCAL VLM escalation for pages OCR cannot read (transcription-only).
+      - CV_VLM_ENABLED=true
+      - CV_VLM_MODEL=qwen2.5vl:7b
+      - CV_VLM_TIMEOUT=120
+      - CV_VLM_MAX_PAGES_PER_DOC=6
+      # Session persistence (survives container restart; same TTL policy).
+      - CV_DATA_DIR=/app/data
+      # Ephemeral session + ingest caps.
+      - CV_SESSION_TTL_MINUTES=120
+      - CV_MAX_FILES=300
+      - CV_MAX_PAGES_PER_DOC=30
+      - CV_MAX_UPLOAD_MB=50
+      - CV_MAX_ZIP_ENTRIES=500
+    volumes:
+      - cv_data:/app/data
+    extra_hosts:
+      # so host.docker.internal resolves on Linux hosts too (no-op on Docker Desktop)
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://127.0.0.1:8089/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    deploy:
+      resources:
+        limits:
+          memory: 3g
+
+volumes:
+  cv_data:

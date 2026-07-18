@@ -1,0 +1,36 @@
+# Keep the build context small and reproducible. The image only needs
+# requirements.txt + app/ + tests/ (see Dockerfile); everything else is excluded.
+
+# Virtualenvs (Quick start creates .venv — never ship it in the build context)
+.venv/
+venv/
+env/
+
+# Python caches / build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Secrets / local config
+.env
+.env.*
+
+# Generated synthetic corpus (regenerated on demand)
+synthetic_data/cvs/
+synthetic_data/jds/
+synthetic_data/bundles/
+synthetic_data/manifest.json
+
+# Repo material not needed inside the image
+.git/
+.github/
+docs/
+scripts/
+*.md

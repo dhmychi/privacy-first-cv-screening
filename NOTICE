@@ -1,0 +1,26 @@
+Privacy-First CV Screening
+Copyright (c) 2026 Abdulrahman Almehmadi
+Licensed under the MIT License (see LICENSE).
+
+This product bundles no third-party source, but depends on the following
+packages at runtime. Their licenses are permissive or weak-copyleft and are
+compatible with this project's MIT license. Run `pip-licenses` for the full,
+current list with versions.
+
+Runtime dependencies and license families:
+  - FastAPI, Starlette, Uvicorn, Pydantic ......... MIT
+  - httpx, pdfplumber, pypdf, pytesseract ......... MIT / BSD
+  - pypdfium2 .................................... Apache-2.0 / BSD-3-Clause
+    (PDF rendering; a permissive replacement for the AGPL-licensed PyMuPDF)
+  - Pillow ....................................... MIT-CMU
+  - arabic-reshaper .............................. MIT
+  - python-bidi .................................. LGPL-3.0 (used unmodified)
+  - python-docx .................................. MIT
+
+Development-only tooling (not distributed with the service):
+  - pytest, ruff, mypy, coverage ................. MIT / Apache-2.0
+  - fpdf2 (synthetic test-PDF authoring) ......... LGPL-3.0 (used unmodified)
+
+All sample/demo data in this repository is synthetic. It contains no real
+person, organisation, or contact detail; emails use the RFC-2606 reserved
+domain example.com.
